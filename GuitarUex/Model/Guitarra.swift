@@ -1,9 +1,3 @@
-//  Guitarra.swift
-//  GuitarUex
-//
-//  Created by Roberto Hermoso Rivero on 21/2/25.
-//
-
 import Foundation
 
 struct Guitarra: Codable, Identifiable, Hashable {
@@ -15,7 +9,6 @@ struct Guitarra: Codable, Identifiable, Hashable {
     let fabricanteId: UUID
     let guitarristaId: [UUID]
     let imagen: Imagen
-    
     struct Imagen: Codable, Hashable {
         let access: String
         let path: String
@@ -35,34 +28,22 @@ struct Guitarra: Codable, Identifiable, Hashable {
         case guitarristaId = "guitarrista_id"
     }
     
+    // Decodificación personalizada para convertir el timestamp (Int) en un Date
     /*
-    
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(UUID.self, forKey: .id)
-        modelo = try container.decode(String.self, forKey: .modelo)
-        colores = try container.decode([String].self, forKey: .colores)
-        descripcion = try container.decode(String.self, forKey: .descripcion)
-        fabricanteId = try container.decode(UUID.self, forKey: .fabricanteId)
-        guitarristaId = try container.decode([UUID].self, forKey: .guitarristaId)
-        imagen = try container.decode(Imagen.self, forKey: .imagen)
         
-        let timestamp = try container.decode(TimeInterval.self, forKey: .createdAt)
-        createdAt = Date(timeIntervalSince1970: timestamp / 1000)
-    }
-    
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
-        try container.encode(modelo, forKey: .modelo)
-        try container.encode(colores, forKey: .colores)
-        try container.encode(descripcion, forKey: .descripcion)
-        try container.encode(fabricanteId, forKey: .fabricanteId)
-        try container.encode(guitarristaId, forKey: .guitarristaId)
-        try container.encode(imagen, forKey: .imagen)
+        self.id = try container.decode(UUID.self, forKey: .id)
         
-        let timestamp = createdAt.timeIntervalSince1970 * 1000
-        try container.encode(timestamp, forKey: .createdAt)
+        let createdAtTimestamp = try container.decode(Int.self, forKey: .createdAt)
+        self.createdAt = Date(timeIntervalSince1970: TimeInterval(createdAtTimestamp / 1000)) // Dividir entre 1000 si el timestamp está en milisegundos
+        
+        self.modelo = try container.decode(String.self, forKey: .modelo)
+        self.colores = try container.decode([String].self, forKey: .colores)
+        self.descripcion = try container.decode(String.self, forKey: .descripcion)
+        self.fabricanteId = try container.decode(UUID.self, forKey: .fabricanteId)
+        self.guitarristaId = try container.decode([UUID].self, forKey: .guitarristaId)
+        self.imagen = try container.decode(Imagen.self, forKey: .imagen)
     }
      */
 }

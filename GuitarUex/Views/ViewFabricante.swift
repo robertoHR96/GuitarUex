@@ -15,3 +15,6 @@ struct ViewFabricante: View {
             .foregroundColor(.blue)
     }
 }
+#Preview {
+    ViewFabricante()
+}

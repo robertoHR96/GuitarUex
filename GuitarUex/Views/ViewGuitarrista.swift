@@ -15,3 +15,6 @@ struct ViewGuitarrista: View {
             .foregroundColor(.blue)
     }
 }
+#Preview {
+    ViewGuitarrista()
+}
