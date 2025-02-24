@@ -29,6 +29,7 @@ final class BandaLogic: ObservableObject {
         self.isBandasLoaded=false
         self.isLoading=true;
         do {
+            print("cargando bandasmin logic con force")
             let bandasLoad = try await persistenceBanda.loadBandas()
             self.bandas = bandasLoad
             self.isBandasLoaded=true
@@ -45,6 +46,7 @@ final class BandaLogic: ObservableObject {
         guard !isBandasLoaded else { return }
         self.isLoading=true;
         do {
+            print("cargando bandas in logic")
             let bandasLoad = try await persistenceBanda.loadBandas()
             self.bandas = bandasLoad
             self.isBandasLoaded=true

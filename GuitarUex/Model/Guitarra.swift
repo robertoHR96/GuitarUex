@@ -8,8 +8,8 @@ struct Guitarra: Codable, Identifiable, Hashable {
     let descripcion: String
     let fabricanteId: UUID
     let guitarristaId: [UUID]
-    let imagen: Imagen
-    struct Imagen: Codable, Hashable {
+    let imagen: ImagenGuitarra
+    struct ImagenGuitarra: Codable, Hashable {
         let access: String
         let path: String
         let name: String
@@ -19,6 +19,7 @@ struct Guitarra: Codable, Identifiable, Hashable {
         let meta: [String: String]
         let url: String
     }
+
     
     // Decodificación personalizada para manejar "created_at" como timestamp (Int)
     enum CodingKeys: String, CodingKey {

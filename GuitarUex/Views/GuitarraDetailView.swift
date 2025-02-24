@@ -68,7 +68,7 @@ struct GuitarraDetailView: View {
         descripcion: "La Fender Telecaster es famosa por su sonido brillante y su simplicidad. Su diseño de cuerpo sólido y su único par de pastillas de bobina simple le dan una tonalidad cortante y precisa. Ha sido un pilar en géneros como el country, rock y blues.",
         fabricanteId: UUID(),
         guitarristaId: [],
-        imagen: Guitarra.Imagen(
+        imagen: Guitarra.ImagenGuitarra(
             access: "public",
             path: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.mfRnGToIkiO0uazWap713wHaCo%26pid%3DApi&f=1&ipt=6a575ad0eff261430886e5f5fd5f3eb0f5ffe4621a40b8f2b893e6a77357e835&ipo=images",
             name: "Telecaster Image",

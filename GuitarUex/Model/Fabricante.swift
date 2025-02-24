@@ -1,19 +1,27 @@
 //
-//  Banda.swift
+//  Fabricante.swift
 //  GuitarUex
 //
-//  Created by Roberto Hermoso Rivero on 21/2/25.
+//  Created by Roberto Hermoso Rivero on 24/2/25.
 //
 
+// location
+//
+//  Banda 2.swift
+//  GuitarUex
+//
+//  Created by Roberto Hermoso Rivero on 24/2/25.
+//
 
 import Foundation
-struct Banda: Codable, Identifiable, Hashable {
+
+struct Fabricante: Codable, Identifiable, Hashable {
     let id: UUID
     let createdAt: Date
     let name: String
-    let guitarristaID: [UUID]
-    let imagen: ImagenBanda
-    struct ImagenBanda: Codable, Hashable {
+    let location: String
+    let imagen: ImagenFabricante
+    struct ImagenFabricante: Codable, Hashable {
         let access: String
         let path: String
         let name: String
@@ -25,8 +33,7 @@ struct Banda: Codable, Identifiable, Hashable {
     }
 
     enum CodingKeys: String, CodingKey {
-        case id, name, imagen
+        case id, name, imagen, location
         case createdAt = "created_at"
-        case guitarristaID = "guitarrista_id"
     }
 }
