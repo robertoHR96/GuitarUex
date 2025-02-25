@@ -12,12 +12,15 @@ import SwiftUI
 final class UserLogic: ObservableObject {
     let persistenceUser: PersitenIteratorUser
     @Published var user: User
+    
     @Published var isLoading = false
+    private var authViewModel : AuthViewModel
     private var isUserLoaded = false  // Variable de caché para verificar si los datos ya están cargados
     
     // Inicialización
     init(persistenceBanda: PersitenIteratorUser = APIClientUser(baseURL: URL(string: "https://x8ki-letl-twmt.n7.xano.io/api:XcbPCCrw/userLog")!)) {
         self.persistenceUser = persistenceBanda
+        self.authViewModel = AuthViewModel()
         self.user = User(id: UUID(), createdAt: Date(), email: "", name: "", isAdmin: false)
     }
     
@@ -30,11 +33,16 @@ final class UserLogic: ObservableObject {
             let loadedUser = try await persistenceUser.loadUser()
             self.user = loadedUser
             isUserLoaded = true  // Marcamos como cargado
+            // Forma correcta de asignar isAdmin basado en la propiedad de user
+            authViewModel.setIsAdmin(isAdmin: self.user.isAdmin)
+            print(authViewModel.isAdmin)
             self.isLoading=false
         } catch {
             print("Error al cargar el usuario: \(error)")
             self.isLoading=false
             self.user = User(id: UUID(), createdAt: Date(), email: "", name: "", isAdmin: false)
+            authViewModel.setIsAdmin(isAdmin: false)
+            print(authViewModel.isAdmin)
             isUserLoaded = false;
             // Si hay un error, también se puede manejar cargando datos por defecto o persistidos localmente.
         }

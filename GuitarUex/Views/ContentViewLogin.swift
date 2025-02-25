@@ -10,6 +10,7 @@ struct LoginData: Codable {
 
 struct ContentViewLogin: View {
     @EnvironmentObject var authViewModel: AuthViewModel
+    @StateObject private var userLogic = UserLogic()
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var isLoading = false
@@ -123,7 +124,10 @@ struct ContentViewLogin: View {
                 if let authToken = jsonResponse["authToken"]{
                     DispatchQueue.main.async {
                         authViewModel.login(token: authToken, email: loginData.email) // Actualiza el modelo de autenticación
+                        
                     }
+
+                    
                 } else {
                     print("No se encontró authToken en la respuesta")
                     showAlertNoLogin = true
@@ -134,6 +138,7 @@ struct ContentViewLogin: View {
                 showAlertNoLogin = true
                 isLoading = false
             }
+            
         }.resume()
     }
 

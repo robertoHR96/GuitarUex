@@ -59,6 +59,8 @@ struct FabricanteDetailView: View {
                     Text("URL de imagen no válida")
                         .foregroundColor(.red)
                 }
+                Text("Localización").font(.headline)
+                Text(fabricante.location)
                 // Aquí podrías agregar más detalles si lo deseas, como el fabricante o el guitarrista
                 Spacer()
             }

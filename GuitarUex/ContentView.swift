@@ -1,6 +1,6 @@
 import SwiftUI
 struct ContentView: View {
-    
+    @StateObject private var userLogic = UserLogic()
     @EnvironmentObject var authViewModel: AuthViewModel
     
     var body: some View {
@@ -12,25 +12,11 @@ struct ContentView: View {
                     Text("Guitarras")
                 }
 
-            // Vista de Guitarristas
-            ViewGuitarrista()
+            // Vista de GPT
+            ViewGPT()
                 .tabItem {
-                    Image(systemName: "person.3")
-                    Text("Guitarristas")
-                }
-
-            // Vista de Fabricantes
-            ViewFabricante()
-                .tabItem {
-                    Image(systemName: "house.fill")
-                    Text("Fabricantes")
-                }
-
-            // Vista de Bandas
-            ViewBanda()
-                .tabItem {
-                    Image(systemName: "music.note")
-                    Text("Bandas")
+                    Image(systemName: "bubble.left.and.bubble.right")
+                    Text("Chat AI")
                 }
 
             // Mostrar vista de usuario si está autenticado, de lo contrario mostrar login
@@ -49,6 +35,9 @@ struct ContentView: View {
             }
         }
         .accentColor(.blue)
+        .task {
+                await userLogic.loadUser()  // Cargamos el usuario solo si no tiene datos
+        }
     }
 }
 
