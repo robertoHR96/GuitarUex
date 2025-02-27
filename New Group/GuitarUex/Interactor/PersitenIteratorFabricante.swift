@@ -1,28 +1,28 @@
 //
-//  PersistenceIteratorGuitarrista.swift
+//  PersitenIteratorFabricante.swift
 //  GuitarUex
 //
-//  Created by Roberto Hermoso Rivero on 25/2/25.
+//  Created by Roberto Hermoso Rivero on 24/2/25.
 //
 
-
-// PersistenceIteratorGuitarrista.swift
-// GuitarUex
 //
-// Created by Roberto Hermoso Rivero on 25/2/25.
+//  PersistenceIteratorBanda.swift
+//  GuitarUex
+//
+//  Created by Roberto Hermoso Rivero on 21/2/25.
 //
 
 import Foundation
 
-protocol PersistenceIteratorGuitarrista {
+protocol PersistenceIteratorFabricante {
     var baseURL: URL { get }
-    func loadGuitarrista() async throws -> [Guitarrista]
-    func saveGuitarrista(_ guitarristas: [Guitarrista]) async throws
-    func getGuitarristaById(id: UUID) async throws -> Guitarrista
+    func loadFabricante() async throws -> [Fabricante]
+    func saveFabricante(_ fabricantes: [Fabricante]) async throws
+    func getFabricanteById(id: UUID) async throws -> Fabricante
 }
 
-extension PersistenceIteratorGuitarrista {
-    func loadGuitarrista() async throws -> [Guitarrista] {
+extension PersistenceIteratorFabricante {
+    func loadFabricante() async throws -> [Fabricante] {
         guard let bearerToken = KeychainManager.shared.retrieveToken() else {
             throw NSError(domain: "AuthError", code: 401, userInfo: [NSLocalizedDescriptionKey: "No se encontró token de autenticación"])
         }
@@ -36,30 +36,29 @@ extension PersistenceIteratorGuitarrista {
             throw URLError(.badServerResponse)
         }
         
-        print(data)
-        return try JSONDecoder().decode([Guitarrista].self, from: data)
+        return try JSONDecoder().decode([Fabricante].self, from: data)
     }
     
-    func getGuitarristaById(id: UUID) async throws -> Guitarrista {
+    func getFabricanteById(id: UUID) async throws -> Fabricante {
         guard let bearerToken = KeychainManager.shared.retrieveToken() else {
             throw NSError(domain: "AuthError", code: 401, userInfo: [NSLocalizedDescriptionKey: "No se encontró token de autenticación"])
         }
 
-        let guitarristaURL = baseURL.appendingPathComponent(id.uuidString)
-        var request = URLRequest(url: guitarristaURL)
+        let fabricanteURL = baseURL.appendingPathComponent(id.uuidString)
+        var request = URLRequest(url: fabricanteURL)
         request.setValue("Bearer \(bearerToken)", forHTTPHeaderField: "Authorization")
 
         let (data, response) = try await URLSession.shared.data(for: request)
 
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-            print("error hhtp response guitarrista\(response)")
+            print("error hhtp response fabricante \(response)")
             throw URLError(.badServerResponse)
         }
 
-        return try JSONDecoder().decode(Guitarrista.self, from: data)
+        return try JSONDecoder().decode(Fabricante.self, from: data)
     }
     
-    func saveGuitarrista(_ guitarristas: [Guitarrista]) async throws {
+    func saveFabricante(_ fabricantes: [Fabricante]) async throws {
         guard let bearerToken = KeychainManager.shared.retrieveToken() else {
             throw NSError(domain: "AuthError", code: 401, userInfo: [NSLocalizedDescriptionKey: "No se encontró token de autenticación"])
         }
@@ -68,7 +67,7 @@ extension PersistenceIteratorGuitarrista {
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("Bearer \(bearerToken)", forHTTPHeaderField: "Authorization")
-        request.httpBody = try JSONEncoder().encode(guitarristas)
+        request.httpBody = try JSONEncoder().encode(fabricantes)
         
         let (_, response) = try await URLSession.shared.data(for: request)
         
@@ -78,10 +77,10 @@ extension PersistenceIteratorGuitarrista {
     }
 }
 
-struct APIClientGuitarrista: PersistenceIteratorGuitarrista {
+struct APIClientFabricante: PersistenceIteratorFabricante {
     var baseURL: URL
     
     init(baseURL: URL? = nil) {
-        self.baseURL = baseURL ?? URL(string: "https://x8ki-letl-twmt.n7.xano.io/api:XcbPCCrw/guitarrista")!
+        self.baseURL = baseURL ?? URL(string: "https://x8ki-letl-twmt.n7.xano.io/api:XcbPCCrw/fabricante")!
     }
 }

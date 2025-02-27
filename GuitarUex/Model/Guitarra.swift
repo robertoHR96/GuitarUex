@@ -1,5 +1,26 @@
 import Foundation
 
+struct ImagenGuitarra: Codable, Hashable {
+    let access: String
+    let path: String
+    let name: String
+    let type: String
+    let size: Int
+    let mime: String
+    let meta: [String: String]
+    let url: String
+    
+    init(path: String="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.mfRnGToIkiO0uazWap713wHaCo%26pid%3DApi&f=1&ipt=6a575ad0eff261430886e5f5fd5f3eb0f5ffe4621a40b8f2b893e6a77357e835&ipo=images", name:String="") {
+            self.access = "public"
+            self.path = path
+            self.name = "string"
+            self.type = "string"
+            self.size = 0
+            self.mime = "string"
+            self.meta = [:]
+            self.url = ""
+        }
+}
 struct Guitarra: Codable, Identifiable, Hashable {
     let id: UUID
     let createdAt: Date
@@ -9,16 +30,6 @@ struct Guitarra: Codable, Identifiable, Hashable {
     let fabricanteId: UUID
     let guitarristaId: [UUID]
     let imagen: ImagenGuitarra
-    struct ImagenGuitarra: Codable, Hashable {
-        let access: String
-        let path: String
-        let name: String
-        let type: String
-        let size: Int
-        let mime: String
-        let meta: [String: String]
-        let url: String
-    }
 
     
     // Decodificación personalizada para manejar "created_at" como timestamp (Int)
@@ -29,22 +40,4 @@ struct Guitarra: Codable, Identifiable, Hashable {
         case guitarristaId = "guitarrista_id"
     }
     
-    // Decodificación personalizada para convertir el timestamp (Int) en un Date
-    /*
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        
-        self.id = try container.decode(UUID.self, forKey: .id)
-        
-        let createdAtTimestamp = try container.decode(Int.self, forKey: .createdAt)
-        self.createdAt = Date(timeIntervalSince1970: TimeInterval(createdAtTimestamp / 1000)) // Dividir entre 1000 si el timestamp está en milisegundos
-        
-        self.modelo = try container.decode(String.self, forKey: .modelo)
-        self.colores = try container.decode([String].self, forKey: .colores)
-        self.descripcion = try container.decode(String.self, forKey: .descripcion)
-        self.fabricanteId = try container.decode(UUID.self, forKey: .fabricanteId)
-        self.guitarristaId = try container.decode([UUID].self, forKey: .guitarristaId)
-        self.imagen = try container.decode(Imagen.self, forKey: .imagen)
-    }
-     */
 }

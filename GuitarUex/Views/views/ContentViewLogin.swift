@@ -1,16 +1,13 @@
 import SwiftUI
 
-
 struct LoginData: Codable {
     var email: String
     var password: String
 }
 
-
-
 struct ContentViewLogin: View {
     @EnvironmentObject var authViewModel: AuthViewModel
-    @StateObject private var userLogic = UserLogic()
+    @EnvironmentObject var userLogic: UserLogic
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var isLoading = false
@@ -73,17 +70,14 @@ struct ContentViewLogin: View {
     
 
     func sendLoginRequest() {
-        // Asegúrate de que la URL esté correcta
         guard let url = URL(string: "https://x8ki-letl-twmt.n7.xano.io/api:XcbPCCrw/auth/login") else {
             print("URL no válida")
             isLoading = false
             return
         }
 
-        // Crear la estructura de LoginData con los valores de email y password
         let loginData = LoginData(email: email, password: password)
 
-        // Intentar codificar loginData en formato JSON
         guard let jsonData = try? JSONEncoder().encode(loginData) else {
             print("Error al codificar JSON")
             showAlertNoLogin = true
@@ -91,14 +85,12 @@ struct ContentViewLogin: View {
             return
         }
 
-        // Crear la solicitud URLRequest
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("application/json", forHTTPHeaderField: "accept") // El encabezado "accept" también puede ser útil
+        request.setValue("application/json", forHTTPHeaderField: "accept")
         request.httpBody = jsonData
 
-        // Realizar la solicitud
         URLSession.shared.dataTask(with: request) { data, response, error in
             DispatchQueue.main.async {
                 isLoading = false
@@ -107,44 +99,39 @@ struct ContentViewLogin: View {
             if let error = error {
                 print("Error en la solicitud: \(error.localizedDescription)")
                 showAlertNoLogin = true
-                isLoading = false
                 return
             }
 
             guard let data = data else {
                 print("No se recibieron datos")
                 showAlertNoLogin = true
-                isLoading = false
                 return
             }
 
-            // Intentar decodificar la respuesta JSON
             do {
                 let jsonResponse = try JSONDecoder().decode([String: String].self, from: data)
-                if let authToken = jsonResponse["authToken"]{
+                if let authToken = jsonResponse["authToken"] {
                     DispatchQueue.main.async {
-                        authViewModel.login(token: authToken, email: loginData.email) // Actualiza el modelo de autenticación
-                        
+                        authViewModel.login(token: authToken, email: loginData.email)
                     }
-
-                    
+                    Task {
+                        await userLogic.loadUser() // Cargar datos del usuario tras login exitoso
+                    }
                 } else {
                     print("No se encontró authToken en la respuesta")
                     showAlertNoLogin = true
-                    isLoading = false
                 }
             } catch {
                 print("Error al decodificar JSON: \(error.localizedDescription)")
                 showAlertNoLogin = true
-                isLoading = false
             }
             
         }.resume()
     }
-
-
-
 }
+
 #Preview {
-    ContentViewLogin().environmentObject(AuthViewModel())
+    ContentViewLogin()
+        .environmentObject(AuthViewModel())
+        .environmentObject(UserLogic())
 }

@@ -14,6 +14,8 @@ final class UserLogic: ObservableObject {
     @Published var user: User
     
     @Published var isLoading = false
+    // ⚠️ Elimina la instancia interna de AuthViewModel
+    private var isUserLoaded = false  // Variable de caché para verificar si los datos ya están cargados
     // Inicialización
     init(persistenceBanda: PersitenIteratorUser = APIClientUser(baseURL: URL(string: "https://x8ki-letl-twmt.n7.xano.io/api:XcbPCCrw/userLog")!)) {
         self.persistenceUser = persistenceBanda
@@ -25,17 +27,22 @@ final class UserLogic: ObservableObject {
     }
     // Método para cargar los datos del usuario
     func loadUser() async {
+        print("cargando usuario en userLogic...")
+        guard !isUserLoaded else { return }  // Si ya está cargado, no se hace la petición
         self.isLoading=true
 
         do {
             let loadedUser = try await persistenceUser.loadUser()
             self.user = loadedUser
+            isUserLoaded = true  // Marcamos como cargado
+            // Forma correcta de asignar isAdmin basado en la propiedad de user
             self.isLoading=false
-            print("cargando usuario en userLogic...")
         } catch {
             print("Error al cargar el usuario: \(error)")
             self.isLoading=false
             self.user = User(id: UUID(), createdAt: Date(), email: "", name: "", isAdmin: false)
+            isUserLoaded = false;
+            // Si hay un error, también se puede manejar cargando datos por defecto o persistidos localmente.
         }
     }
 }

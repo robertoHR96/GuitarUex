@@ -1,12 +1,10 @@
 import SwiftUI
-import Combine
 
 @MainActor
 final class GuitarraLogic: ObservableObject {
     let persistenGuitar: PersistenceIteratorGuitar
     @Published var guitarras: [Guitarra] = []
     @Published var isLoading: Bool = false
-    @Published var saveSuccess: Bool = false
     private var isGuitarLoaded = false
     // Inicialización síncrona (sin async en el init)
     init(persistenGuitar: PersistenceIteratorGuitar = APIClient(baseURL: URL(string: "https://x8ki-letl-twmt.n7.xano.io/api:XcbPCCrw/guitarra")!)) {
@@ -17,18 +15,7 @@ final class GuitarraLogic: ObservableObject {
         self.persistenGuitar = APIClient(baseURL: validURL)
     }
     
-    func saveGuitarra(modelo:String, descripcion:String, ulr:String,fabricante_id:UUID, guitarristas_id:[String]) async {
-        self.isLoading = true
-        do {
-            // Llamada al método saveGuitarra del PersistenceIteratorGuitar
-            try await persistenGuitar.saveGuitarra(modelo:modelo, descripcion: descripcion, ulr: ulr, fabricante_id: fabricante_id, guitarristas_id:guitarristas_id)
-            self.saveSuccess = true // Éxito al guardar
-        } catch {
-            print("Error al guardar la guitarra: \(error)")
-            self.saveSuccess = false // Error al guardar
-        }
-        self.isLoading = false
-    }
+    
     // Método para cargar guitarras de manera asíncrona
     func loadGuitarrasForce() async {
         guard !isGuitarLoaded else { return }
@@ -63,4 +50,3 @@ final class GuitarraLogic: ObservableObject {
         }
     }
 }
-

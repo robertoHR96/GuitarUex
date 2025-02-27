@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ViewGuitarra: View {
     @StateObject private var guitarraLogic = GuitarraLogic()
-    @EnvironmentObject var authViewModel: AuthViewModel
+    @EnvironmentObject var  userLogic: UserLogic
     // Estas son las variables de estado que controlarán si la hoja debe mostrarse
     @State private var isShowingAddGuitarra = false
     @State private var isShowingAddFabricante = false
@@ -34,16 +34,15 @@ struct ViewGuitarra: View {
             // Llamada async de manera controlada cuando la vista aparece
             .task {
                 await guitarraLogic.loadGuitarras() // Ejecutamos la tarea asíncrona correctamente
-                print(authViewModel.$isAdmin)
             }
             .navigationTitle("Lista de Guitarras") // Título de la vista
             
-            .navigationBarItems(trailing: authViewModel.isAdmin ? Menu {
+            .navigationBarItems(trailing: userLogic.user.isAdmin ? Menu {
                 Button(action: {
                     // Acción para mostrar la hoja de añadir guitarra
                     isShowingAddGuitarra.toggle()
                 }) {
-                    Label("Añadir guitarra", systemImage: "guitars")
+                    Label("Añadir guitarra ", systemImage: "guitars")
                 }
                 Button(action: {
                     // Acción para mostrar la hoja de añadir fabricante
@@ -80,5 +79,5 @@ struct ViewGuitarra: View {
 }
 
 #Preview {
-    ViewGuitarra().environmentObject(AuthViewModel())
+    ViewGuitarra().environmentObject(UserLogic())
 }

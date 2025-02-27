@@ -36,7 +36,6 @@ extension PersistenceIteratorGuitarrista {
             throw URLError(.badServerResponse)
         }
         
-        print(data)
         return try JSONDecoder().decode([Guitarrista].self, from: data)
     }
     

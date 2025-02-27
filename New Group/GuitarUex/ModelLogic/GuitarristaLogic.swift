@@ -110,7 +110,6 @@ final class GuitarristaLogic: ObservableObject {
         do {
             print("Cargando guitarristas en lógica")
             let guitarristasLoad = try await persistenceGuitarrista.loadGuitarrista()
-            print(guitarristasLoad.count)
             self.guitarristas = guitarristasLoad
             self.isGuitarristasLoaded = true
             self.isLoading = false

@@ -1,0 +1,54 @@
+[
+  {
+    "id": "2290ac6a-b9b6-47a1-bf02-ceb47d6f1a05",
+    "created_at": 1739301461617,
+    "modelo": "stratocaster",
+    "colores": [
+      "Sunburst de tres tonos",
+      "Olympic White",
+      "Black",
+      "Sonic Blue"
+    ],
+    "descripcion": "La Fender Stratocaster de 1962 es un modelo icónico de la era pre-CBS, con cuerpo de aliso, mástil de arce con diapasón de palo de rosa tipo slab, golpeador de celuloide mint green y tres pastillas single-coil de alnico. Su selector de 3 posiciones, puente trémolo sincronizado y acabado en laca de nitrocelulosa le daban su característico tono y estética vintage.",
+    "fabricante_id": "08761e51-de1c-4043-8d45-d04cc1d989b4",
+    "guitarrista_id": [
+      "3b8aa472-5463-40be-a5c0-87b2855ce02d"
+    ],
+    "imagen": {
+      "access": "public",
+      "path": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fd1aeri3ty3izns.cloudfront.net%2Fmedia%2F62%2F623660%2F1200%2Fpreview_1.jpg&f=1&nofb=1&ipt=3cb283828b04320c93e6f0b6cf9e49b1ad1ddb6243009787d063f31eadcc354c&ipo=images",
+      "name": "stratocasterimage",
+      "type": "jpg",
+      "size": 0,
+      "mime": "string",
+      "meta": {},
+      "url": "https://x8ki-letl-twmt.n7.xano.iohttps://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fd1aeri3ty3izns.cloudfront.net%2Fmedia%2F62%2F623660%2F1200%2Fpreview_1.jpg&f=1&nofb=1&ipt=3cb283828b04320c93e6f0b6cf9e49b1ad1ddb6243009787d063f31eadcc354c&ipo=images"
+    }
+  },
+  {
+    "id": "fc4188c0-1452-47dc-a078-18c48ccffe12",
+    "created_at": 1739301781819,
+    "modelo": "les paul",
+    "colores": [
+      "Sunburst - standard",
+      "Black Beauty - custom",
+      "Cherry Red - junior, special",
+      "TV Yellow - junior, special"
+    ],
+    "descripcion": "La Gibson Les Paul de 1962, aunque en transición hacia el modelo SG, mantenía su esencia clásica con cuerpo de caoba maciza y mástil encolado del mismo material. Los modelos Custom y Standard contaban con diapasón de palo de rosa o ébano, incrustaciones trapezoidales o en bloque, y pastillas P-90 (Junior y Special) o humbuckers PAF (Standard y Custom). Su puente Tune-O-Matic y su acabado en laca de nitrocelulosa le daban un sustain y tono cálido característicos, convirtiéndola en una de las guitarras más icónicas de la época.",
+    "fabricante_id": "6467506d-ca39-4c22-89e2-96713e022318",
+    "guitarrista_id": [
+      "c3063502-c16f-48e4-ae34-c1cefc9c8ea7"
+    ],
+    "imagen": {
+      "access": "public",
+      "path": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.12fret.com%2Fwp-content%2Fgallery%2Fgibson-lp-std-59-ri-burst-1992-cons%2Fgibson-lp-std-59-ri-burst-1992-cons-full-front.jpg&f=1&nofb=1&ipt=42efa6f28bf41f425dd28d572997b13590bee099396d5c1e731bdbf8f324e5c3&ipo=images",
+      "name": "lespaulimage",
+      "type": "jpg",
+      "size": 0,
+      "mime": "string",
+      "meta": {},
+      "url": "https://x8ki-letl-twmt.n7.xano.iohttps://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.12fret.com%2Fwp-content%2Fgallery%2Fgibson-lp-std-59-ri-burst-1992-cons%2Fgibson-lp-std-59-ri-burst-1992-cons-full-front.jpg&f=1&nofb=1&ipt=42efa6f28bf41f425dd28d572997b13590bee099396d5c1e731bdbf8f324e5c3&ipo=images"
+    }
+  }
+]

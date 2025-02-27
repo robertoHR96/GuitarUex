@@ -9,14 +9,12 @@ struct ContentView: View {
             ViewGuitarra()
                 .tabItem {
                     Image(systemName: "guitars")
-                    Text("Guitarras")
                 }
 
             // Vista de GPT
             ViewGPT()
                 .tabItem {
                     Image(systemName: "bubble.left.and.bubble.right")
-                    Text("Chat GPT")
                 }
 
             // Mostrar vista de usuario si está autenticado, de lo contrario mostrar login
@@ -24,17 +22,15 @@ struct ContentView: View {
                 ViewUser()
                     .tabItem {
                         Image(systemName: "person.crop.circle")
-                        Text("User")
                     }
             } else {
                 ContentViewLogin()
                     .tabItem {
                         Image(systemName: "person.crop.circle")
-                        Text("User")
                     }
             }
         }
-        .accentColor(.green)
+        .accentColor(.blue)
         .task{
             await userLogic.loadUser()
         }
