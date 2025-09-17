@@ -2,7 +2,6 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var userLogic: UserLogic
-    
     var body: some View {
         TabView {
             // Vista de Guitarras
@@ -18,7 +17,11 @@ struct ContentView: View {
                     Image(systemName: "bubble.left.and.bubble.right")
                     Text("Chat GPT")
                 }
-
+            GuitarTunerView()
+                .tabItem{
+                    Image(systemName: "dial.medium")
+                    Text("Afinador")
+                }
             // Mostrar vista de usuario si está autenticado, de lo contrario mostrar login
             if userLogic.user.isAdmin{
                 ViewUser()

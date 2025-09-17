@@ -1,0 +1,11 @@
+import AVFoundation
+
+func requestMicrophonePermission() {
+    AVAudioSession.sharedInstance().requestRecordPermission { granted in
+        if granted {
+            print("Permiso concedido")
+        } else {
+            print("Permiso denegado")
+        }
+    }
+}

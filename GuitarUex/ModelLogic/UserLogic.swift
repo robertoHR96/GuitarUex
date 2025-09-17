@@ -20,7 +20,6 @@ final class UserLogic: ObservableObject {
         self.user = User(id: UUID(), createdAt: Date(), email: "", name: "", isAdmin: false)
     }
     func logoutUser() {
-        print("Realizando logout en userLogic...")
         self.user = User(id: UUID(), createdAt: Date(), email: "", name: "", isAdmin: false)
     }
     // Método para cargar los datos del usuario
@@ -31,7 +30,6 @@ final class UserLogic: ObservableObject {
             let loadedUser = try await persistenceUser.loadUser()
             self.user = loadedUser
             self.isLoading=false
-            print("cargando usuario en userLogic...")
         } catch {
             print("Error al cargar el usuario: \(error)")
             self.isLoading=false
