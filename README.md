@@ -1,36 +1,36 @@
 # GuitarUex
 
-GuitarUex is a SwiftUI application for iOS designed for guitar enthusiasts. It allows users to manage their collection of guitars, learn about famous guitarists and bands, and access a built-in guitar tuner. The app also includes a chat feature for users to connect and discuss their passion for music.
+GuitarUex es una aplicación SwiftUI para iOS diseñada para entusiastas de la guitarra. Permite a los usuarios gestionar su colección de guitarras, aprender sobre guitarristas y bandas famosas, y acceder a un afinador de guitarra incorporado. La aplicación también incluye una función de chat para que los usuarios se conecten y discutan su pasión por la música.
 
-## Features
+## Características
 
-*   **Guitar Collection:** Keep a detailed record of your guitars, including manufacturer, model, and images.
-*   **Explore Artists:** Discover information about famous guitarists and their bands.
-*   **Guitar Tuner:** A utility to help you tune your guitar accurately.
-*   **User Authentication:** Secure login and user management.
-*   **Chat:** An in-app chat to connect with other users.
+*   **Colección de Guitarras:** Mantén un registro detallado de tus guitarras, incluyendo fabricante, modelo e imágenes.
+*   **Explora Artistas:** Descubre información sobre guitarristas famosos y sus bandas.
+*   **Afinador de Guitarra:** Una utilidad para ayudarte a afinar tu guitarra con precisión.
+*   **Autenticación de Usuarios:** Inicio de sesión seguro y gestión de usuarios.
+*   **Chat:** Un chat dentro de la aplicación para conectar con otros usuarios.
 
-## Project Structure
+## Estructura del Proyecto
 
-The project is organized into the following main directories:
+El proyecto está organizado en los siguientes directorios principales:
 
--   `GuitarUex/`: Contains the core source code for the application.
-    -   `Model/`: Data models for the main entities (Guitar, Guitarist, Band, etc.).
-    -   `ModelLogic/`: Business logic and view models.
-    -   `Views/`: SwiftUI views for the user interface.
-    -   `Interactor/`: Handles data persistence.
-    -   `KeyChain/`: Manages user authentication and keychain access.
-    -   `Resources/`: Contains static resources like JSON data.
+-   `GuitarUex/`: Contiene el código fuente principal de la aplicación.
+    -   `Model/`: Modelos de datos para las entidades principales (Guitarra, Guitarrista, Banda, etc.).
+    -   `ModelLogic/`: Lógica de negocio y view models.
+    -   `Views/`: Vistas de SwiftUI para la interfaz de usuario.
+    -   `Interactor/`: Maneja la persistencia de datos.
+    -   `KeyChain/`: Gestiona la autenticación de usuarios y el acceso al llavero (Keychain).
+    -   `Resources/`: Contiene recursos estáticos como datos JSON.
 
-## Technologies Used
+## Tecnologías Utilizadas
 
-*   **SwiftUI:** The user interface is built using Apple's modern declarative framework.
-*   **Swift:** The application is written entirely in Swift.
-*   **Xcode:** The project is managed and built using Xcode.
+*   **SwiftUI:** La interfaz de usuario está construida con el moderno framework declarativo de Apple.
+*   **Swift:** La aplicación está escrita completamente en Swift.
+*   **Xcode:** El proyecto se gestiona y compila con Xcode.
 
-## How to Build
+## Cómo Compilar
 
-1.  Clone the repository.
-2.  Open `GuitarUex.xcodeproj` in Xcode.
-3.  Select a simulator or a connected iOS device.
-4.  Click the "Run" button to build and launch the application.
+1.  Clona el repositorio.
+2.  Abre `GuitarUex.xcodeproj` en Xcode.
+3.  Selecciona un simulador o un dispositivo iOS conectado.
+4.  Haz clic en el botón "Run" para compilar y lanzar la aplicación.
