@@ -8,7 +8,7 @@ GuitarUex es una aplicación SwiftUI para iOS diseñada para entusiastas de la g
 *   **Explora Artistas:** Descubre información sobre guitarristas famosos y sus bandas.
 *   **Afinador de Guitarra:** Una utilidad para ayudarte a afinar tu guitarra con precisión.
 *   **Autenticación de Usuarios:** Inicio de sesión seguro y gestión de usuarios.
-*   **Chat:** Un chat dentro de la aplicación para conectar con otros usuarios.
+*   **Chat con IA:** Un chat integrado que utiliza un Modelo Lingüístico Grande (LLM) para responder preguntas y conversar sobre música y guitarras.
 
 ## Estructura del Proyecto
 
